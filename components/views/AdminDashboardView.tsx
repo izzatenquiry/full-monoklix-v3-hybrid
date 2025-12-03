@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { getAllUsers, updateUserStatus, replaceUsers, exportAllUserData, forceUserLogout, updateUserSubscription, saveUserPersonalAuthToken, addNewUser, removeUser, updateUserBatch02 } from '../../services/userService';
@@ -742,6 +743,7 @@ const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ language }) => 
                                     <select id="new-role" value={newUser.role} onChange={(e) => setNewUser({...newUser, role: e.target.value as UserRole})} className="w-full bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg p-2">
                                         <option value="user">User</option>
                                         <option value="admin">Admin</option>
+                                        <option value="special_user">Special User</option>
                                     </select>
                                 </div>
                             </div>

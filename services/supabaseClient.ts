@@ -75,7 +75,8 @@ export interface Database {
           email: string
           phone: string
           // FIX: Use string literals instead of circular enum reference for correct type inference
-          role: 'admin' | 'user'
+          // UPDATED: Added special_user
+          role: 'admin' | 'user' | 'special_user'
           // FIX: Use string literals to include 'subscription' and 'trial' statuses
           status: 'pending_payment' | 'inactive' | 'lifetime' | 'admin' | 'subscription' | 'trial'
           api_key: string | null
@@ -99,7 +100,7 @@ export interface Database {
           email: string
           phone: string
           // FIX: Use string literals to include 'subscription' and 'trial' statuses
-          role?: 'admin' | 'user'
+          role?: 'admin' | 'user' | 'special_user'
           // FIX: Use string literals to include 'subscription' and 'trial' statuses
           status?: 'pending_payment' | 'inactive' | 'lifetime' | 'admin' | 'subscription' | 'trial'
           api_key?: string | null
@@ -121,7 +122,7 @@ export interface Database {
           email?: string
           phone?: string
           // FIX: Use string literals to include 'subscription' and 'trial' statuses
-          role?: 'admin' | 'user'
+          role?: 'admin' | 'user' | 'special_user'
           // FIX: Use string literals to include 'subscription' and 'trial' statuses
           status?: 'pending_payment' | 'inactive' | 'lifetime' | 'admin' | 'subscription' | 'trial'
           api_key?: string | null
@@ -304,7 +305,7 @@ export interface Database {
       };
     }
     Enums: {
-      user_role: 'admin' | 'user'
+      user_role: 'admin' | 'user' | 'special_user'
       user_status: 'pending_payment' | 'inactive' | 'lifetime' | 'admin' | 'subscription' | 'trial'
       proxy_server_status: 'active' | 'maintenance' | 'disabled'
     }

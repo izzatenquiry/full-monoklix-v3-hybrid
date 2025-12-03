@@ -1,4 +1,3 @@
-
 import type { ComponentType } from 'react';
 
 // FIX: Add Language type for internationalization.
@@ -23,6 +22,12 @@ export type View =
   | 'token-master'
   | 'ugc-gen';
 
+// UPDATED: Added 'special_user' role
+export type UserRole = 'admin' | 'user' | 'special_user';
+
+// FIX: Expanded UserStatus to include 'subscription' and 'trial' statuses.
+export type UserStatus = 'lifetime' | 'admin' | 'inactive' | 'pending_payment' | 'subscription' | 'trial';
+
 export interface NavItem {
   id: View | 'logout' | 'support-group';
   label: string;
@@ -32,7 +37,7 @@ export interface NavItem {
   url?: string;
   isNew?: boolean;
   isExternal?: boolean;
-  roles?: ('admin' | 'user')[];
+  roles?: UserRole[];
   disabledForStatus?: UserStatus[];
   hideForStatus?: UserStatus[];
   isSpecial?: boolean; // Added for unique styling like the e-course button
@@ -78,10 +83,6 @@ export interface TutorialContent {
   mainDescription: string;
   tutorials: Tutorial[];
 }
-
-export type UserRole = 'admin' | 'user';
-// FIX: Expanded UserStatus to include 'subscription' and 'trial' statuses.
-export type UserStatus = 'lifetime' | 'admin' | 'inactive' | 'pending_payment' | 'subscription' | 'trial';
 
 export interface User {
   id: string; // from Supabase auth

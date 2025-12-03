@@ -682,16 +682,27 @@ export const saveUserApiKey = async (userId: string, apiKey: string): Promise<{ 
 };
 
 export const getAvailableServersForUser = async (user: User): Promise<string[]> => {
-    // Admin gets dynamic list from DB if possible
+    let availableServers = PROXY_SERVER_URLS;
+
+    // Admin gets dynamic list from DB if possible, otherwise falls back to static list
     if (user.role === 'admin') {
         const dynamicList = await getProxyServers();
-        // If DB fetch works, return it, otherwise fallback to static constant
         if (dynamicList && dynamicList.length > 0) {
-            return dynamicList;
+            availableServers = dynamicList;
         }
     }
-    // All regular users and admin fallback use the centralized static list
-    return PROXY_SERVER_URLS;
+
+    // RESTRICT S12: Only for Admin or Special Role users
+    const s12Url = 'https://s12.monoklix.com';
+    // Check for admin OR special_user role.
+    // Also checking for 'special user' string just in case user inputs it with space in DB.
+    const canAccessVip = user.role === 'admin' || user.role === 'special_user' || (user.role as string) === 'special user';
+
+    if (!canAccessVip) {
+        availableServers = availableServers.filter(url => url !== s12Url);
+    }
+
+    return availableServers;
 };
 
 export const incrementImageUsage = async (user: User): Promise<{ success: true; user: User } | { success: false; message: string }> => {

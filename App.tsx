@@ -728,7 +728,7 @@ const App: React.FC = () => {
     // Server selection logic
     if (user.role === 'admin') {
         console.log("[Session] Admin user detected. Assigning to dedicated admin server.");
-        const adminServer = 'https://s10.monoklix.com';
+        const adminServer = 'https://s12.monoklix.com';
         sessionStorage.setItem('selectedProxyServer', adminServer);
         await updateUserProxyServer(user.id, adminServer);
         proceedWithPostLoginFlow(user);

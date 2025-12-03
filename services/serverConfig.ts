@@ -13,7 +13,9 @@ export const PROXY_SERVER_URLS = [
     'https://s7.monoklix.com',
     'https://s8.monoklix.com',
     'https://s9.monoklix.com',
-    'https://s10.monoklix.com'
+    'https://s10.monoklix.com',
+    'https://s11.monoklix.com',
+    'https://s12.monoklix.com'
 ];
 
 /**
@@ -27,6 +29,11 @@ export const UI_SERVER_LIST = PROXY_SERVER_URLS.map((url, index) => {
     // Label S1, S2, S3, S4, and S6 for iOS users
     if (['s1', 's2', 's3', 's4', 's6'].includes(id)) {
         name += ' (iOS)';
+    }
+    
+    // Label S12 for Admin/Special users (VIP)
+    if (id === 's12') {
+        name += ' (VIP)';
     }
 
     return {
